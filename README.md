@@ -5,8 +5,6 @@ rosie architecture
 
 Project deadlines, also found [on the wiki](https://github.com/cs181f/project2/wiki/Deadlines):
 
-[10/07 - Plan  ](https://github.com/cs181f/project2/issues/1)  
-
 [10/11 - Individual Architectures for Rosie  ](https://github.com/cs181f/project2/issues/4)
 
 [10/12 - High level descriptions of run time components  ](https://github.com/cs181f/project2/issues/2)
