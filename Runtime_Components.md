@@ -7,7 +7,7 @@ The core of Rosie is the application server. This server will be built on the Fl
 
 The server's primary responsibility is to handle the post-recieve WebHook from Github. This webhook POSTs data to our server in the following form:
 
-'''json
+```json
 
 {
   "before": "5aef35982fb2d34e9d9d4502f6ede1072793222d",
@@ -50,7 +50,7 @@ The server's primary responsibility is to handle the post-recieve WebHook from G
   "ref": "refs/heads/master"
 }
 
-'''
+```
 
 The server must parse that JSON, split the commits into seperate builds, store them in the DB and then start a worker thread if one is not already running. All of this should be reasonably simple. 
 
