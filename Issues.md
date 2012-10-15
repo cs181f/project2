@@ -9,4 +9,4 @@ That being said, the largest issue we had was wrapping our head around doing an 
 
 # Outstanding
 
-At the moment, we have no outstanding issues. Hopefully, after the review some will appear.
+We had some uncertainty around whether or not to build our workers to take tasks synchronously or asynchronously. For large projects, asynchronous work would be absolutely necessary, but for smaller projects we it mostly useless and occasionally problematic. For that reason, we decided to implement a synchronous worker instead of many asynchronous. However, we remain somewhat uncertain of this decision.
