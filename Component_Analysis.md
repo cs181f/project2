@@ -11,6 +11,10 @@ Both Brennen and Jesse have a lot of experience using Flask as a web framework. 
 
 Jesse has used MongoDB for a variety of projects, writing over 500+ lines of model/object code using MongoDB ORMs (MongoMapper and Mongoid). While the majority of that code was written in Ruby, his experience with the database has shown that it is extremely well suited to the structure of the Build object.
 
+# JSON API
+
+Same as the Flask analysis. Jesse and Brennen have written 1000+ lines of JSON API code using Flask.
+
 Additional support for the architecture came from examining another open source CI server: CIJoe (https://github.com/defunkt/cijoe). We borrow the in memory queue idea from them.
 
 All in all, we are confident that our current architecture is well suited to solving the problem at hand.
