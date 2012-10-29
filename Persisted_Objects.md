@@ -1,9 +1,7 @@
 Persisted Objects
 ==========================
 
-Only one type of object is persisted in the Database: a Build object. 
-
-We will use MongoDB as our database because it allows easy storage of non-relational object types and embedded objects.
+Only one type of object is persisted in the Database: a Build object. As we mention in the component analysis, the Build object is best visualized in a non-relational format, so we'll use MongoDB to persist it with embedded object like `repository` and `author`.
 
 # Build
 

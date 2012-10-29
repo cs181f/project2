@@ -56,16 +56,16 @@ The server must parse that JSON, split the commits into seperate builds, store t
 
 # Build Queue
 
-The build queue will be a simple in memory queue that the Application Server adds to on a post-recieve webhook from Github. It is accessible by the server and the worker threads. 
+The build queue will be a simple in memory queue that the Application Server adds to on a post-recieve webhook from Github. It will store Build ids. It is accessible by the server and the worker threads. 
 
-# Synchronous Worker Thread
+# Worker Thread
 
-The worker thread builds the user's project in the background and then posts the results to Github and stores them in the DB. The worker is started by the server when a a Github web hook hits the build API route. There are two primary functionality cases for the worker: (1) it builds the build, checks the queue, which is empty and then terminates; and (2) it builds the build, checks the queue, which has builds remaining, then builds the next one until the queue is empty.
+The worker thread builds the user's project in the background and then posts the results to Github and stores them in the DB. The worker is started by the server when a a Github web hook hits the build API route. There are two primary functionality cases for the worker: (1) it builds the build, persists the build results to the database, checks the queue, which is empty and then terminates; and (2) it builds the build, persists the build results to the database, checks the queue, which has build ids remaining, then builds the next one until the queue is empty. The Worker Thread is asynchronous to the Application Server; however, there is only ever one running at a time, so builds are built synchronously and in order.
 
 # Database
 
-The database is used to store the builds. It interacts with the Application Server and the Synchronous Worker Thread. When a new build is published, the Application Server takes the information from Github, creates a new Build object and persists it in the database. Then, after passing the Build.id to the Synchronous Worker Thread, the Thread retrives the Build information, builds it, and updates the Build object with the build results. When a user wants to see a build history, the Application Server loads the neccessary Build objects from the Database and displays them in HTML on the front end.
+The database is used to store the builds (and eventually the results of the build). It interacts with the Application Server and the Worker Thread. When a new build is published, the Application Server takes the information from Github, creates a new Build object and persists it in the database. Then, after passing the Build.id to the Worker Thread, the Thread retrives the Build information, builds it, and updates the Build object with the build results. When a user wants to see a build history, the Application Server loads the neccessary Build objects from the Database and displays them in HTML on the front end.
 
 # Configuration File
 
-The configurations for Rosie are stored in a configuration file.
+The configurations for Rosie are stored in a configuration file. On setup, we update this file with the necessary configuration options. On start, we load the configuration options into memory and use them to configure the application server. When a user reconfigures the server through the HTML interface, we update the in memory configurations and the configuration file.
